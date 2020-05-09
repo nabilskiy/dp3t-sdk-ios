@@ -151,6 +151,13 @@ class DP3TCryptoModule {
     ///   - getContacts: a callback to retreive contacts for a given day
     /// - Throws: throws if a error occurs
     /// - Returns: all contacts that match
+  
+  public func getCurrentEphIDString() -> String {
+    let cur = try! getCurrentEphID()
+    return cur.hexEncodedString
+  }
+  
+  
     internal func checkContacts(secretKey: Data, onsetDate: DayDate, bucketDate: Date, getContacts: (DayDate) -> ([Contact])) throws -> [Contact] {
         var dayToTest: DayDate = onsetDate
         var secretKeyForDay: Data = secretKey
