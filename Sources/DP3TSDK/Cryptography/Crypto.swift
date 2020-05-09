@@ -28,6 +28,8 @@ internal class Crypto {
         }
         return keyData
     }
+  
+  
 
     /// Perform the SHA256 hashing algorithm
     /// - Parameter data: input data
