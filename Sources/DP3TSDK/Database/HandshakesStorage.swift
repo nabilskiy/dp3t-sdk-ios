@@ -8,7 +8,7 @@ import Foundation
 import SQLite
 
 /// Storage used to persist DP3T handshakes
-class HandshakesStorage {
+public class HandshakesStorage {
     /// Database connection
     private let database: Connection
 

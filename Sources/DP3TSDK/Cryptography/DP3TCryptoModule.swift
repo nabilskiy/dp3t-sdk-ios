@@ -157,7 +157,6 @@ public class DP3TCryptoModule {
     return cur.hexEncodedString
   }
   
-  
   internal func checkContacts(secretKey: Data, onsetDate: DayDate, bucketDate: Date, getContacts: (DayDate) -> ([Contact])) throws -> [Contact] {
     var dayToTest: DayDate = onsetDate
     var secretKeyForDay: Data = secretKey
