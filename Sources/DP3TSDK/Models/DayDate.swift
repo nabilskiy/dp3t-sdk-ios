@@ -7,7 +7,7 @@
 import Foundation
 
 /// Date model wich is always rounded to just contain the current day
-struct DayDate: Codable, CustomStringConvertible, Equatable, Hashable, Comparable {
+public struct DayDate: Codable, CustomStringConvertible, Equatable, Hashable, Comparable {
     let timestamp: TimeInterval
 
     init(date: Date = Date()) {
@@ -30,11 +30,11 @@ struct DayDate: Codable, CustomStringConvertible, Equatable, Hashable, Comparabl
         return dayMin.addingTimeInterval(.day)
     }
 
-    static func < (lhs: DayDate, rhs: DayDate) -> Bool {
+  public static func < (lhs: DayDate, rhs: DayDate) -> Bool {
         return lhs.timestamp < rhs.timestamp
     }
 
-    var description: String {
+  public var description: String {
         return "<DayDate \(Date(timeIntervalSince1970: timestamp))>"
     }
 }
