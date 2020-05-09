@@ -15,10 +15,6 @@ let package = Package(
             name: "DP3TSDK",
             targets: ["DP3TSDK"]
         ),
-        .library(
-            name: "DP3TSDK_CALIBRATION",
-            targets: ["DP3TSDK_CALIBRATION"]
-        ),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.6.0"),
@@ -31,15 +27,6 @@ let package = Package(
         .target(
             name: "DP3TSDK",
             dependencies: ["SQLite", "SwiftProtobuf", "SwiftJWT"]
-        ),
-        .target(
-            name: "DP3TSDK_CALIBRATION",
-            dependencies: ["SQLite", "SwiftProtobuf", "SwiftJWT"],
-            swiftSettings: [.define("CALIBRATION")]
-        ),
-        .testTarget(
-            name: "DP3TSDKTests",
-            dependencies: ["DP3TSDK"]
-        ),
+        )
     ]
 )
