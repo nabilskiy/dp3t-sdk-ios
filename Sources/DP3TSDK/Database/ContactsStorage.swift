@@ -8,7 +8,7 @@ import Foundation
 import SQLite
 
 /// Storage used to persist Contacts
-class ContactsStorage {
+public class ContactsStorage {
     /// Database connection
     private let database: Connection
 
