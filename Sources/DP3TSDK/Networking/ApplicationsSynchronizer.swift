@@ -32,19 +32,20 @@ class ApplicationSynchronizer {
         guard case let DP3TApplicationInfo.discovery(_, enviroment) = appInfo else {
             fatalError("ApplicationSynchronizer should not be used in manual mode")
         }
-        ExposeeServiceClient.getAvailableApplicationDescriptors(enviroment: enviroment, urlSession: urlSession) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(ad):
-                do {
-                    try ad.forEach(self.storage.add(appDescriptor:))
-                    callback(.success(()))
-                } catch {
-                    callback(.failure(DP3TTracingError.databaseError(error: error)))
-                }
-            case let .failure(error):
-                callback(.failure(.networkingError(error: error)))
-            }
-        }
+        print("server request")
+//        ExposeeServiceClient.getAvailableApplicationDescriptors(enviroment: enviroment, urlSession: urlSession) { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case let .success(ad):
+//                do {
+//                    try ad.forEach(self.storage.add(appDescriptor:))
+//                    callback(.success(()))
+//                } catch {
+//                    callback(.failure(DP3TTracingError.databaseError(error: error)))
+//                }
+//            case let .failure(error):
+//                callback(.failure(.networkingError(error: error)))
+//            }
+//        }
     }
 }
