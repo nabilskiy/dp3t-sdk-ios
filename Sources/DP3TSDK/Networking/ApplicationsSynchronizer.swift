@@ -29,23 +29,23 @@ class ApplicationSynchronizer {
     /// Synchronize the local and remote data.
     /// - Parameter callback: A callback with the sync result
     func sync(callback: @escaping (Result<Void, DP3TTracingError>) -> Void) throws {
-//        guard case let DP3TApplicationInfo.discovery(_, enviroment) = appInfo else {
-//            fatalError("ApplicationSynchronizer should not be used in manual mode")
-//        }
-//        print("server request")
-//        ExposeeServiceClient.getAvailableApplicationDescriptors(enviroment: enviroment, urlSession: urlSession) { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case let .success(ad):
-//                do {
-//                    try ad.forEach(self.storage.add(appDescriptor:))
-//                    callback(.success(()))
-//                } catch {
-//                    callback(.failure(DP3TTracingError.databaseError(error: error)))
-//                }
-//            case let .failure(error):
-//                callback(.failure(.networkingError(error: error)))
-//            }
-//        }
+        guard case let DP3TApplicationInfo.discovery(_, enviroment) = appInfo else {
+            fatalError("ApplicationSynchronizer should not be used in manual mode")
+        }
+        print("server request")
+        ExposeeServiceClient.getAvailableApplicationDescriptors(enviroment: enviroment, urlSession: urlSession) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .success(ad):
+                do {
+                    try ad.forEach(self.storage.add(appDescriptor:))
+                    callback(.success(()))
+                } catch {
+                    callback(.failure(DP3TTracingError.databaseError(error: error)))
+                }
+            case let .failure(error):
+                callback(.failure(.networkingError(error: error)))
+            }
+        }
     }
 }
