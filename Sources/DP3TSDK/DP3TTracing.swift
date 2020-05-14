@@ -63,7 +63,7 @@ public enum DP3TTracing {
             fatalError("DP3TSDK already initialized")
         }
         DP3TMode.current = mode
-        instance = try DP3TSDK(appInfo: appInfo, urlSession: urlSession)
+//        instance = try DP3TSDK(appInfo: appInfo, urlSession: urlSession)
     }
 
     /// The delegate
