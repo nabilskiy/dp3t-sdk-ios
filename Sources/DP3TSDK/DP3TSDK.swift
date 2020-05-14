@@ -178,25 +178,26 @@ class DP3TSDK {
         try? database.generateContactsFromHandshakes()
         try? state.numberOfContacts = database.contactsStorage.count()
         try? state.numberOfHandshakes = database.handshakesStorage.count()
-        getATracingServiceClient(forceRefresh: true) { [weak self] result in
-            switch result {
-            case let .failure(error):
-                callback?(.failure(error))
-                return
-            case let .success(service):
-                self?.synchronizer.sync(service: service) { [weak self] result in
-                    DispatchQueue.main.async {
-                        switch result {
-                        case .success:
-                            self?.state.lastSync = Date()
-                            callback?(.success(()))
-                        case let .failure(error):
-                            callback?(.failure(.networkingError(error: error)))
-                        }
-                    }
-                }
-            }
-        }
+        callback?(.success(()))
+//        getATracingServiceClient(forceRefresh: true) { [weak self] result in
+//            switch result {
+//            case let .failure(error):
+//                callback?(.failure(error))
+//                return
+//            case let .success(service):
+//                self?.synchronizer.sync(service: service) { [weak self] result in
+//                    DispatchQueue.main.async {
+//                        switch result {
+//                        case .success:
+//                            self?.state.lastSync = Date()
+//                            callback?(.success(()))
+//                        case let .failure(error):
+//                            callback?(.failure(.networkingError(error: error)))
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     /// get the current status of the SDK
