@@ -298,26 +298,28 @@ class DP3TSDK {
 
         switch appInfo {
         case let .discovery(appId, _):
-            do {
-                try applicationSynchronizer.sync { [weak self] result in
-                    guard let self = self else { return }
-                    switch result {
-                    case .success:
-                        do {
-                            let desc = try self.database.applicationStorage.descriptor(for: appId)
-                            let client = ExposeeServiceClient(descriptor: desc)
-                            self.cachedTracingServiceClient = client
-                            callback(.success(client))
-                        } catch {
-                            callback(.failure(DP3TTracingError.databaseError(error: error)))
-                        }
-                    case let .failure(error):
-                        callback(.failure(error))
-                    }
-                }
-            } catch {
-                callback(.failure(DP3TTracingError.databaseError(error: error)))
-            }
+            let client = ExposeeServiceClient(descriptor: ApplicationDescriptor(appId: appId, bucketBaseUrl: URL(string: "")!, reportBaseUrl: URL(string: "")!, jwtPublicKey: nil))
+            callback(.success(client))
+//            do {
+//                try applicationSynchronizer.sync { [weak self] result in
+//                    guard let self = self else { return }
+//                    switch result {
+//                    case .success:
+//                        do {
+//                            let desc = try self.database.applicationStorage.descriptor(for: appId)
+//                            let client = ExposeeServiceClient(descriptor: desc)
+//                            self.cachedTracingServiceClient = client
+//                            callback(.success(client))
+//                        } catch {
+//                            callback(.failure(DP3TTracingError.databaseError(error: error)))
+//                        }
+//                    case let .failure(error):
+//                        callback(.failure(error))
+//                    }
+//                }
+//            } catch {
+//                callback(.failure(DP3TTracingError.databaseError(error: error)))
+//            }
         case let .manual(appInfo):
             let client = ExposeeServiceClient(descriptor: appInfo, urlSession: urlSession)
             callback(.success(client))

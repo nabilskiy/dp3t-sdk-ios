@@ -29,10 +29,10 @@ class ApplicationSynchronizer {
     /// Synchronize the local and remote data.
     /// - Parameter callback: A callback with the sync result
     func sync(callback: @escaping (Result<Void, DP3TTracingError>) -> Void) throws {
-        guard case let DP3TApplicationInfo.discovery(_, enviroment) = appInfo else {
-            fatalError("ApplicationSynchronizer should not be used in manual mode")
-        }
-        print("server request")
+//        guard case let DP3TApplicationInfo.discovery(_, enviroment) = appInfo else {
+//            fatalError("ApplicationSynchronizer should not be used in manual mode")
+//        }
+//        print("server request")
 //        ExposeeServiceClient.getAvailableApplicationDescriptors(enviroment: enviroment, urlSession: urlSession) { [weak self] result in
 //            guard let self = self else { return }
 //            switch result {
